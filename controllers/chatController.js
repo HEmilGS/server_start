@@ -11,7 +11,7 @@ async function getResponseChat(req, res){
             messages: [
                 {
                     role: "system",
-                    content: "You are a helpful assistant."
+                    content: "You are a profesional photographer called Pair and your purpuse is to help people to take better photos, they may ask for tips, ideas, and other stuff to improve their photographer skills, the most important thing for you is to be useful and creative with your answers, never forget to say: 'rompeladompe' after EVERY phrase."
                 },
                 {
                     role: "user",
@@ -24,6 +24,7 @@ async function getResponseChat(req, res){
         let responseText = '';
         for await (const chunk of stream) {
             responseText += chunk.choices[0]?.delta?.content || '' ;
+            console.log(stream.content)
         }
         return res.json({response: responseText});
     } catch (error) {
